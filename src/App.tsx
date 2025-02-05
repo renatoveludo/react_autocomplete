@@ -28,7 +28,7 @@ export const App: React.FC<AppProps> = ({ delay = 300, onSelected }) => {
   }, [inputValue, delay]);
 
   useEffect(() => {
-    if (debouncedValue === '') {
+    if (debouncedValue.trim() === '') {
       setFilteredPeople(peopleFromServer);
     } else {
       setFilteredPeople(
@@ -101,7 +101,7 @@ export const App: React.FC<AppProps> = ({ delay = 300, onSelected }) => {
                     <div
                       className="dropdown-item"
                       data-cy="suggestion-item"
-                      key={person.slug}
+                      key={`${person.name}-${person.born}`}
                       onMouseDown={() => handleSuggestionClick(person)}
                     >
                       <p className="has-text-link">{person.name}</p>
